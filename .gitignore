@@ -1,0 +1,7 @@
+code2.scm
+*.obj
+*.tlog
+*.tlog
+*.lib
+*.idc
+*.idc
