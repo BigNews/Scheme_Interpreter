@@ -8,6 +8,7 @@
 #include "../object/pair.h"
 #include "../object/null.h"
 #include "../object/string.h"
+#include "../object/symbol.h"
 
 #ifndef _BUILDIN_MISCELLANEOUS_H_
 #define _BUILDIN_MISCELLANEOUS_H_

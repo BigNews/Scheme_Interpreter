@@ -59,6 +59,14 @@ namespace buildin
 			return shared_ptr<Boolean>(new Boolean(false));
 		}
 
+		if (t1 -> getType() == SYMBOL && t2 -> getType() == SYMBOL)
+		{
+			if (static_pointer_cast<Symbol>(t1) -> value
+				== static_pointer_cast<Symbol>(t2) -> value)
+				return shared_ptr<Boolean>(new Boolean(true));
+			return shared_ptr<Boolean>(new Boolean(false));
+		}
+
 		return shared_ptr<Boolean>(new Boolean(false));
 	}
 

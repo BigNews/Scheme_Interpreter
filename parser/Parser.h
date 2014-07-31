@@ -81,13 +81,27 @@ namespace Parser
 	shared_ptr<Object> BeginActions(shared_ptr<Object>);
 	shared_ptr<Object> EvalSequence(shared_ptr<Object>, shared_ptr<Environment>);
 
-	//Eval a cond-predicate : TODO
+	//Eval a let-binding.
+	bool _IsLet(shared_ptr<Object> x);
+	shared_ptr<Object> LetParameters(shared_ptr<Object>);
+	shared_ptr<Object> LetBody(shared_ptr<Object>);
+	shared_ptr<Object> EvalLet(shared_ptr<Object>, shared_ptr<Object>, shared_ptr<Environment>);
+
+	//Eval a let*-binding
+	bool _IsLetStar(shared_ptr<Object> x);
+	shared_ptr<Object> EvalLetStar(shared_ptr<Object>, shared_ptr<Object>, shared_ptr<Environment>);
+
+	//Eval a letrec-binding
+	bool _IsLetRec(shared_ptr<Object> x);
+	shared_ptr<Object> EvalLetRec(shared_ptr<Object>, shared_ptr<Object>, shared_ptr<Environment>);
+
+	//Eval a cond-predicate : 
 	bool _IsCond(shared_ptr<Object>);
 	shared_ptr<Object> CondSequence(shared_ptr<Object>);
 	//shared_ptr<Object> CondToIf(shared_ptr<Object>);
 	shared_ptr<Object> EvalCond(shared_ptr<Object>, shared_ptr<Environment>);
 	
-	//Eval an application : TODO
+	//Eval an application : 
 	bool _IsApplication(shared_ptr<Object>);
 	shared_ptr<Object> Operator(shared_ptr<Object>);
 	shared_ptr<Object> Operands(shared_ptr<Object>);

@@ -360,12 +360,15 @@ void Process(char str[])
 	//std::shared_ptr<ObjectDef::Pair> t2(buildin::cons(t1, t1));
 	//buildin::_Display(t2);
 
+	std::cout << std::endl;
+
 	while (ttt.pos < ttt.size)
 	{
 		//std::cout << "(";
 		int tindex = ttt.pos;
 		tmp = Parser::LoadAndParseBlockFromToken(ttt, tindex, 0);
-		std::cout << "> ";
+		std::cout << std::endl;
+		std::cout << ">. ";
 		//std::cout << std::endl;
 		buildin::_Display(tmp);
 		std::cout << std::endl;
@@ -389,6 +392,8 @@ void Process(char str[])
 		ttt.pos = tindex;
 
 	}
+
+	std::cout << std::endl;
 	std::cout << "Done!" << std::endl;
 }
 
