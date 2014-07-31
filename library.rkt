@@ -48,6 +48,15 @@
       (eqv? x y)
       )
   )
+  
+(define (list? x)
+  (if (pair? x)
+      (list? (cdr x))
+      (if (null? x)
+          #t
+          #f)
+      )
+  )
 
 (define (mappend x y)
    (if (pair? x)

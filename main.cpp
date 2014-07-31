@@ -295,7 +295,7 @@ void LoadFromLibrary()
 {
 }
 
-void Process()
+void Process(char str[])
 {
 	//freopen("parser.out", "w", stdout);
 	std::cout << std::setiosflags(std::ios::showpoint) << std::ios::sync_with_stdio(false);
@@ -319,6 +319,7 @@ void Process()
 		//std::cout << "(";
 		int tindex = tttt.pos;
 		tmp = Parser::LoadAndParseBlockFromToken(tttt, tindex, 0);
+		//std::cout << "> ";
 		//buildin::_Display(tmp);
 		//std::cout << std::endl;
 		if (buildin::_Display(Parser::Eval(tmp, current))) std::cout << std::endl;
@@ -347,7 +348,7 @@ void Process()
 
 
 	std::cout << "Load program and interpreting..." << std::endl;
-	Parser::Tokens ttt("tmp2.rkt");
+	Parser::Tokens ttt(str);
 	if (ttt.LoadAndTokenize() == Parser::TOKENS_UNEXPECTED_EOF)
 	{
 		throw Debugger::DebugMessage("Unexpected EOF, parser aborted.\n");
@@ -364,9 +365,10 @@ void Process()
 		//std::cout << "(";
 		int tindex = ttt.pos;
 		tmp = Parser::LoadAndParseBlockFromToken(ttt, tindex, 0);
+		std::cout << "> ";
 		//std::cout << std::endl;
-		//buildin::_Display(tmp);
-		//std::cout << std::endl;
+		buildin::_Display(tmp);
+		std::cout << std::endl;
 		if (buildin::_Display(Parser::Eval(tmp, current))) std::cout << std::endl;
 		//buildin::_Display(buildin::NumEqual(std::static_pointer_cast<ObjectDef::Pair>(tmp)));
 		//buildin::_Display(buildin::NumBigger(std::static_pointer_cast<ObjectDef::Pair>(tmp)));
@@ -390,8 +392,13 @@ void Process()
 	std::cout << "Done!" << std::endl;
 }
 
-int main()
+int main(int argc, char * argv[])
 {
+	if (argc != 2)
+	{
+		std::cerr << "Usage: Scheme_Interpreter <filename>" << std::endl;
+		return 0;
+	}
 	try
 	{
 		//freopen("log.txt", "w", stdout);
@@ -400,7 +407,7 @@ int main()
 		//temp3();
 		//temp4();
 		//temp5();
-		Process();
+		Process(argv[1]);
 		std::cout << std::endl;
 		std::cout << "Accepted! Press any key to exit the program." << std::endl;
 		system("pause");

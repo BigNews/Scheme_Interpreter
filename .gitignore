@@ -5,3 +5,14 @@ code2.scm
 *.lib
 *.idc
 *.idc
+r5rs.pdf
+Debug/vc100.pdb
+Debug/vc100.idb
+Debug/Scheme_Interpreter.vcxprojResolveAssemblyReference.cache
+Debug/Scheme_Interpreter.log
+Debug/Scheme_Interpreter.lastbuildstate
+Debug/Scheme_Interpreter.exe.intermediate.manifest
+Debug/Scheme_Interpreter.Build.CppClean.log
+Scheme_Interpreter.vcxproj
+Scheme_Interpreter.vcxproj.filters
+Scheme_Interpreter.vcxproj.user

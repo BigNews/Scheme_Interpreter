@@ -83,7 +83,8 @@ namespace Parser
 
 	//Eval a cond-predicate : TODO
 	bool _IsCond(shared_ptr<Object>);
-	shared_ptr<Object> CondToIf(shared_ptr<Object>);
+	shared_ptr<Object> CondSequence(shared_ptr<Object>);
+	//shared_ptr<Object> CondToIf(shared_ptr<Object>);
 	shared_ptr<Object> EvalCond(shared_ptr<Object>, shared_ptr<Environment>);
 	
 	//Eval an application : TODO

@@ -1262,7 +1262,7 @@ namespace Parser
 		if (str[0] != '"' && str[str.length() - 1] != '"') throw Debugger::DebugMessage("In TokenToString,\nx is not a string\n");
 		#endif
 
-		return shared_ptr<String>(new String(str));
+		return shared_ptr<String>(new String(str.substr(1, str.length() - 2)));
 	}
 
 	bool TokenIsSymbol(string &str)

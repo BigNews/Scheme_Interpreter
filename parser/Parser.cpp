@@ -418,6 +418,66 @@ namespace Parser
 		return TaggedList(x, "cond");
 	}
 
+	shared_ptr<Object> CondSequence(shared_ptr<Object> x)
+	{
+		if (x -> getType() != PAIR) throw Debugger::DebugMessage("In CondSequence(shared_ptr<Object>), x is not a pair.");
+
+		return (static_pointer_cast<Pair>(x) -> cdr());
+	}
+
+	shared_ptr<Object> EvalCond(shared_ptr<Object> x, shared_ptr<Environment> envi)
+	{
+		shared_ptr<Object> exv(new Void());
+		
+		shared_ptr<Object> y;
+		shared_ptr<Object> predicate;
+
+		#ifdef __PARSER_DEBUGGER_
+		std::cout << "EvalCond Processing ... :";
+		buildin::_Display(x);
+		std::cout << std::endl;
+		#endif
+
+		while (x -> getType() != NIL)
+		{
+			#ifdef __DEBUG_MODE_ON_
+			if (x -> getType() != PAIR) throw Debugger::DebugMessage("In EvalCond(shared_ptr<Object>, shared_ptr<Environment>):\nx is not a pair.\n");
+			#endif
+
+			y = static_pointer_cast<Pair>(x) -> car();
+
+			if (y -> getType() != PAIR) throw Debugger::DebugMessage("Cond : Bad syntax!\n");
+			predicate = static_pointer_cast<Pair>(y) -> car();
+			
+			if (predicate -> getType() == SYMBOL &&
+				static_pointer_cast<Symbol>(predicate) -> value == "else")
+			{
+				#ifdef __PARSER_DEBUGGER_
+				std::cout << "In EvalCond, Got 'else' clause, and evaluating... : ";
+				buildin::_Display(x);
+				//std::cout << "     ";
+				//buildin::_Display(static_pointer_cast<Pair>(x) -> cdr());
+				std::cout << std::endl; 
+				#endif
+				if (static_pointer_cast<Pair>(x) -> cdr() -> getType() != NIL)
+					throw Debugger::DebugMessage("cond: bad syntax (`else' clause must be last)\n");
+
+				exv = EvalSequence(static_pointer_cast<Pair>(y) -> cdr(), envi);
+				return exv;
+			}
+			else
+			if (_IsTrue(Eval(predicate, envi)) -> getValue())
+			{
+				exv = EvalSequence(y, envi);
+				return exv;
+			}
+
+			x = static_pointer_cast<Pair>(x) -> cdr();
+		}
+
+		return exv;
+	}
+
 	//Eval an application
 
 	bool _IsApplication(shared_ptr<Object> x)
@@ -442,7 +502,7 @@ namespace Parser
 		if (_IsIfPredicate(expr)) return EvalIf(expr, envi);
 		if (_IsLambda(expr)) return MakeProcedure(LambdaParameters(expr), LambdaBody(expr), envi);
 		if (_IsBegin(expr)) return EvalSequence(BeginActions(expr), envi);
-		//if (_IsCond(expr)) return Eval(CondToIf(expr), envi);
+		if (_IsCondition(expr)) return EvalCond(CondSequence(expr), envi);
 		if (_IsApplication(expr)) 
 		{
 			//buildin::_Display(ListOfValue(Operands(expr), envi));
