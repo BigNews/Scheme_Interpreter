@@ -1115,5 +1115,124 @@ namespace buildin
 		return exv;
 
 	}
+
+	shared_ptr<Object> NumberSqrt(shared_ptr<Object> x)
+	{
+		if (x -> getType() != PAIR) throw Debugger::DebugMessage("In NumberSqrt,\nNeed more parameters.\n");
+
+		x = static_pointer_cast<Pair>(x) -> car();
+
+		return _NumberSqrt(x);
+	}
+
+	shared_ptr<Object> _NumberSqrt(shared_ptr<Object> x)
+	{
+		//shared_ptr<Integer> intTry(new Integer());
+		//shared_ptr<Rational> ratTry(new Rational());
+		//shared_ptr<Real> realTry(new Real());
+		//shared_ptr<ComplexRational> cETry(new ComplexRational());
+		//shared_ptr<ComplexReal> cITry(new ComplexReal());
+
+		switch (x -> getType())
+		{
+		case INTEGER:
+			{
+				Integer intTry;
+				if (IntSmaller(*static_pointer_cast<Integer>(x), IntZero))
+				{
+					if (IntegerSqrt(IntMult(*static_pointer_cast<Integer>(x), IntMinusOne), intTry))
+						return shared_ptr<ComplexRational>(new ComplexRational(IntZero , intTry));
+					else
+					{
+						Real tmp;
+						RealSqrt(RealMult(Real(-1.0), Real(*static_pointer_cast<Integer>(x))), tmp);
+						return shared_ptr<ComplexReal>(new ComplexReal(Real(0.0), tmp));
+					}
+				}
+				else
+				{
+					if (IntegerSqrt(*static_pointer_cast<Integer>(x), intTry))
+						return shared_ptr<Integer>(new Integer(intTry));
+					else
+					{
+						Real tmp;
+						RealSqrt(Real(*static_pointer_cast<Integer>(x)), tmp);
+						return shared_ptr<Real>(new Real(tmp));
+					}
+				}
+				break;
+			}
+
+		case RATIONAL:
+			{
+				Rational ratTry;
+				if (RatSmaller(*static_pointer_cast<Rational>(x), RatZero))
+				{
+					if (RationalSqrt(RatMult(*static_pointer_cast<Rational>(x), RatMinusOne), ratTry))
+						return shared_ptr<ComplexRational>(new ComplexRational(RatZero , ratTry));
+					else
+					{
+						Real tmp;
+						RealSqrt(RealMult(Real(-1.0), Real(*static_pointer_cast<Rational>(x))), tmp);
+						return shared_ptr<ComplexReal>(new ComplexReal(Real(0.0), tmp));
+					}
+				}
+				else
+				{
+					if (RationalSqrt(*static_pointer_cast<Rational>(x), ratTry))
+						return shared_ptr<Rational>(new Rational(ratTry));
+					else
+					{
+						Real tmp;
+						RealSqrt(Real(*static_pointer_cast<Integer>(x)), tmp);
+						return shared_ptr<Real>(new Real(tmp));
+					}
+				}
+				break;
+			}
+
+		case REAL:
+			if (RealSmaller(*static_pointer_cast<Real>(x), Real(0.0)))
+			{
+				Real tmp;
+				RealSqrt(RealMult(Real(-1.0), Real(*static_pointer_cast<Rational>(x))), tmp);
+				return shared_ptr<ComplexReal>(new ComplexReal(Real(0.0), tmp));
+			}
+			else
+			{
+				Real tmp;
+				RealSqrt(Real(*static_pointer_cast<Integer>(x)), tmp);
+				return shared_ptr<Real>(new Real(tmp));
+			}
+			break;
+
+		case COMPLEX_RATIONAL:
+			{
+				ComplexRational cETry;
+				if (ComplexRationalSqrt(*static_pointer_cast<ComplexRational>(x), cETry))
+					return shared_ptr<ComplexRational>(new ComplexRational(cETry));
+				else
+				{
+					ComplexReal tmp;
+					ComplexRealSqrt(ComplexReal(*static_pointer_cast<ComplexRational>(x)), tmp);
+					return shared_ptr<ComplexReal>(new ComplexReal(tmp));
+				}
+			}
+			break;
+
+		case COMPLEX_REAL:
+			{
+				ComplexReal tmp;
+				ComplexRealSqrt(*static_pointer_cast<ComplexReal>(x), tmp);
+				return shared_ptr<ComplexReal>(new ComplexReal(tmp));
+			}
+			break;
+
+		default:
+			throw Debugger::DebugMessage("In NumberSqrt,\nGot Unexpected Type of variable.");
+		}
+
+		throw Debugger::DebugMessage("In NumberSqrt,\nNo return value!\n");
+	}
 }
 

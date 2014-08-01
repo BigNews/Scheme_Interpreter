@@ -19,6 +19,7 @@ namespace buildin
 	using std::shared_ptr;
 
 	shared_ptr<Object> IsNull(shared_ptr<Object>);
+	shared_ptr<Object> IsSymbol(shared_ptr<Object> x);
 
 	//shared_ptr<Object> AreEqual(shared_ptr<Object>);
 	shared_ptr<Object> AreEqv(shared_ptr<Object>);
@@ -26,6 +27,7 @@ namespace buildin
 	shared_ptr<Object> MakeList(shared_ptr<Object>);
 
 	shared_ptr<Object> SchemeThrow(shared_ptr<Object>);
+	shared_ptr<Object> SchemeApply(shared_ptr<Object>);
 
 	//is what.
 }

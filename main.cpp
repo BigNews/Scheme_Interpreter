@@ -297,9 +297,9 @@ void LoadFromLibrary()
 
 void Process(char str[])
 {
-	//freopen("parser.out", "w", stdout);
+	freopen("SchemeInterpreter.log", "w", stdout);
 	std::cout << std::setiosflags(std::ios::showpoint) << std::ios::sync_with_stdio(false);
-
+	
 	std::cout << "Primitive Initializing..." << std::endl;
 	std::shared_ptr<ObjectDef::Environment> current(new ObjectDef::Environment());
 	InitialPrimitive::InitAll(current);
@@ -362,23 +362,30 @@ void Process(char str[])
 
 	std::cout << std::endl;
 
+	#define RELEASE_MODE_ON
+
 	while (ttt.pos < ttt.size)
 	{
 		//std::cout << "(";
 		int tindex = ttt.pos;
 		tmp = Parser::LoadAndParseBlockFromToken(ttt, tindex, 0);
+		#ifdef RELEASE_MODE_ON
+		tmp = Parser::Eval(tmp, current);
+		#endif
+		#ifndef RELEASE_MODE_ON
 		std::cout << std::endl;
 		std::cout << ">. ";
 		//std::cout << std::endl;
 		buildin::_Display(tmp);
-		std::cout << std::endl;
+		//std::cout << std::endl;
+		
 		if (buildin::_Display(Parser::Eval(tmp, current))) std::cout << std::endl;
 		//buildin::_Display(buildin::NumEqual(std::static_pointer_cast<ObjectDef::Pair>(tmp)));
 		//buildin::_Display(buildin::NumBigger(std::static_pointer_cast<ObjectDef::Pair>(tmp)));
 		//buildin::_Display(buildin::NumSmaller(std::static_pointer_cast<ObjectDef::Pair>(tmp)));
 		//buildin::_Display(buildin::NumBiggerOrEqual(std::static_pointer_cast<ObjectDef::Pair>(tmp)));
 		//buildin::_Display(buildin::NumSmallerOrEqual(std::static_pointer_cast<ObjectDef::Pair>(tmp)));
-
+		#endif
 		/*std::cout << std::endl;
 		buildin::_Display(buildin::NumberPlus(std::static_pointer_cast<ObjectDef::Pair>(tmp)));
 		std::cout << std::endl;
@@ -415,14 +422,14 @@ int main(int argc, char * argv[])
 		Process(argv[1]);
 		std::cout << std::endl;
 		std::cout << "Accepted! Press any key to exit the program." << std::endl;
-		system("pause");
+		//system("pause");
 	}
 	catch (Debugger::DebugMessage a)
 	{
 		std::cerr << std::endl;
 		std::cerr << a.message << std::endl;
 		std::cerr << "Not my fault... Not my fault..." << std::endl;
-		system("pause");
+		//system("pause");
 	}
 
 	std::cout << "Program Exit..." << std::endl;

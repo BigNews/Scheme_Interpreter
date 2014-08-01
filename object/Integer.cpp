@@ -516,7 +516,10 @@ namespace ObjectDef
 
 	bool IntegerSqrt(Integer &x, Integer &exv)
 	{
-		if (IntSmaller(x, IntZero)) return false;
+		#ifdef __DEBUG_MODE_ON_
+		if (IntSmaller(x, IntZero)) throw Debugger::DebugMessage("In IntegerSqrt(Integer&, Integer&),\nGot number below zero.\n");
+		#endif
+
 		Integer l = IntZero, r = x;
 		Integer mid;
 

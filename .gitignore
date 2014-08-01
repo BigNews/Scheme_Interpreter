@@ -19,3 +19,8 @@ Scheme_Interpreter.vcxproj.user
 code.scm
 code.scm
 code.scm
+*.manifest
+*.lastbuildstate
+*.log
+*.cache
+*.pdb

@@ -56,6 +56,8 @@ namespace buildin
 	shared_ptr<Object> NumberDiv(shared_ptr<Object> x);
 
 	shared_ptr<Object> NumberSqrt(shared_ptr<Object> x);
+	shared_ptr<Object> _NumberSqrt(shared_ptr<Object> x);
+
 	shared_ptr<Object> NumberAbs(shared_ptr<Object> x);
 
 	shared_ptr<Object> NumberQuotient(shared_ptr<Object> x);

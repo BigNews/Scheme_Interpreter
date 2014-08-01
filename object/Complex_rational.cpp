@@ -273,8 +273,10 @@ namespace ObjectDef
 		tt = RationalSqrt(RatDiv(RatPlus(len, x.real), RatTwo), a);
 		if (!tt) return false;
 
-		tt = RationalSqrt(RatDiv(RatMinus(len, x.real), RatTwo), a);
+		tt = RationalSqrt(RatDiv(RatMinus(len, x.real), RatTwo), b);
 		if (!tt) return false;
+
+		if (RatSmaller(x.image, RatZero)) b = RatMult(b, RatMinusOne);
 
 		exv = ComplexRational(a, b);
 		return true;

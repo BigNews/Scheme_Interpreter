@@ -140,6 +140,8 @@ namespace ObjectDef
 		if (!tt) throw Debugger::DebugMessage("In ComplexRealSqrt,\nUnexpected false found!\n");
 		#endif
 
+		if (RealSmaller(x.image, Real(0.0))) b = RealMult(b, Real(-1.0));
+
 		exv = ComplexReal(a, b);
 
 		return true;

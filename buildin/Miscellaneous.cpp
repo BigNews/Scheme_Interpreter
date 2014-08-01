@@ -1,5 +1,6 @@
 #include "Miscellaneous.h"
 #include "NumberOperation.h"
+#include "..\parser\Parser.h"
 
 namespace buildin
 {
@@ -13,6 +14,15 @@ namespace buildin
 		x = static_pointer_cast<Pair>(x) -> car();
 
 		if (x -> getType() == NIL) return shared_ptr<Boolean>(new Boolean(true));
+		return shared_ptr<Boolean>(new Boolean(false));
+	}
+
+	shared_ptr<Object> IsSymbol(shared_ptr<Object> x)
+	{
+		if (x -> getType() != PAIR) throw Debugger::DebugMessage("symbol? : arity mismatch!\n");
+		x = static_pointer_cast<Pair>(x) -> car();
+
+		if (x -> getType() == SYMBOL) return shared_ptr<Boolean>(new Boolean(true));
 		return shared_ptr<Boolean>(new Boolean(false));
 	}
 
@@ -81,5 +91,18 @@ namespace buildin
 		throw Debugger::DebugMessage((static_pointer_cast<String>(x) -> data).c_str());
 
 		return shared_ptr<Void>(new Void());
+	}
+
+	shared_ptr<Object> SchemeApply(shared_ptr<Object> x)
+	{
+		if (x -> getType() != PAIR) throw Debugger::DebugMessage("apply: arity mismatch;\nthe expected number of arguments does not match the given number");
+
+		shared_ptr<Object> proc = static_pointer_cast<Pair>(x) -> car();
+		shared_ptr<Object> para = static_pointer_cast<Pair>(x) -> cdr();
+
+		if (para -> getType() != PAIR) throw Debugger::DebugMessage("apply: contract violation!\n");
+		para = static_pointer_cast<Pair>(para) -> car();
+
+		return Parser::Apply(proc, para);
 	}
 }

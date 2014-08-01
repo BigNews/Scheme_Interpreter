@@ -1,7 +1,21 @@
-(define nil '())
+;*******************************************************************
+;
+;						Number Operation Part
+;
+;*******************************************************************
 
-(define (not x)
-	(if x #f #t))
+(define (zero? x) (= x 0))
+
+(define (abs x)
+	(if (< x 0)
+		(- 0 x)
+		x))
+
+;*******************************************************************
+;
+;						List Part
+;
+;*******************************************************************
 
 (define (caar x) (car (car x)))
 (define (cadr x) (car (cdr x)))
@@ -57,13 +71,53 @@
           #f)
       )
   )
+  
+(define (length x)
+  (if (null? x)
+	  0
+	  (if (pair? x)
+		  (+ (length (cdr x)) 1)
+		  (c++throw "length : contract violation!")
+		)
+	)
+)
+
+(define (memq obj alist)
+  (if (null? alist)
+      #f
+	  (if (eq? obj (car alist))
+	      alist
+		  (memq obj (cdr alist))
+		  )
+   )
+)
+
+(define (memv obj alist)
+  (if (null? alist)
+      #f
+	  (if (eqv? obj (car alist))
+	      alist
+		  (memv obj (cdr alist))
+		  )
+   )
+)
+
+(define (member obj alist)
+  (if (null? alist)
+      #f
+	  (if (equal? obj (car alist))
+	      alist
+		  (member obj (cdr alist))
+		  )
+   )
+)
 
 (define (mappend x y)
    (if (pair? x)
 		(cons (car x) (mappend (cdr x) y))
 		(if (null? x)
 			y
-			(c++throw "mappend: contract violation\n") 
+			(c++throw "mappend: contract violation") 
 			)
 		))
 		
@@ -72,9 +126,81 @@
 		(mappend x (_append (car y) (cdr y)))
 		(if (null? y)
 			x
-			(c++throw "_append: contract violation!\n")
+			(c++throw "_append: contract violation!")
 			)
 		)
 	)
 		
-(define (append . x) (_append `() x))
+(define (append . x) (_append `() x))		
+
+(define (_map proc operand)
+	(if (null? operand)
+		'()
+		(cons (proc (car operand)) (_map proc (cdr operand)))
+		)
+		)
+		
+(define (map proc subject . object)
+	(if (null? object)
+		(_map proc subject)
+		(if (null? subject)
+			`()
+			(cons (apply proc (cons (car subject) (_map car object)))
+				(map proc (cdr subject) (apply append (_map cdr object)))))
+		)
+		)
+		
+(define (assq obj alist)
+	(if (null? alist)
+		#f
+		(if (eq? obj (caar alist))
+			(car alist)
+			(assq obj (cdr alist))
+			)
+	)
+)
+
+(define (assv obj alist)
+	(if (null? alist)
+		#f
+		(if (eqv? obj (caar alist))
+			(car alist)
+			(assv obj (cdr alist))
+			)
+	)
+)
+
+(define (assoc obj alist)
+	(if (null? alist)
+		#f
+		(if (equal? obj (caar alist))
+			(car alist)
+			(assoc obj (cdr alist))
+			)
+	)
+)
+
+(define (reverse alist)
+	(if (null? alist)
+		'()
+		(append (reverse (cdr alist)) (cons (car alist) nil))))
+		
+(define list-tail
+	(lambda (x k)
+		(if (zero? k)
+			x
+			(list-tail (cdr x) (- k 1)))))
+			
+(define (list-ref x k)
+	(car (list-tail x k)))
+
+;*******************************************************************
+;
+;						Miscellaneous
+;
+;*******************************************************************
+
+(define nil '())
+(define (not x)
+	(if x #f #t))
+		
