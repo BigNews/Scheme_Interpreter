@@ -56,5 +56,10 @@ namespace ObjectDef
 
 		return Null();
 	}
+
+	void Environment::EmptyEnv()
+	{
+		env.clear();
+	}
 }
 

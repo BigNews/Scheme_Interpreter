@@ -415,7 +415,7 @@ namespace Parser
 	//Eval a let-binding.
 	bool _IsLet(shared_ptr<Object> x)
 	{
-		return TaggedList(x, "let");
+		return (TaggedList(x, "let") || TaggedList(x, "letrec"));
 	}
 
 	shared_ptr<Object> LetParameters(shared_ptr<Object> x)
@@ -628,11 +628,21 @@ namespace Parser
 		else
 		if (procedure -> getType() == COMPOUND_PROCEDURE)
 		{
-			return EvalSequence(ProcedureBody(procedure) 
+			/*return EvalSequence(ProcedureBody(procedure) 
 						       ,static_pointer_cast<Environment>
 							   (static_pointer_cast<Procedure>(procedure)
-							   -> ExtendEnvironment(arguments)));
-												
+							   -> ExtendEnvironment(arguments)));*/
+
+			shared_ptr<Environment> procedureEnv;
+			procedureEnv = static_pointer_cast<Procedure>(procedure) -> ExtendEnvironment(arguments);
+
+			shared_ptr<Object> exv;
+			exv = EvalSequence(ProcedureBody(procedure) 
+						       ,procedureEnv);
+			
+			if (!ContainProcedure(exv)) procedureEnv -> EmptyEnv();
+
+			return exv;
 		}
 
 		throw Debugger::DebugMessage("Unknown procedure type -- APPLY\n");
@@ -652,6 +662,22 @@ namespace Parser
 	shared_ptr<Object> ProcedureBody(shared_ptr<Object> x)
 	{
 		return static_pointer_cast<Procedure>(x) -> GetProcedureBody();
+	}
+
+	bool ContainProcedure(shared_ptr<Object> x)
+	{
+		if (x -> getType() != PAIR)
+		{
+			if (x -> getType() != COMPOUND_PROCEDURE) return false;
+			return true;
+		}
+		else
+		{
+			return (ContainProcedure(static_pointer_cast<Pair>(x) -> car())
+				|| ContainProcedure(static_pointer_cast<Pair>(x) -> cdr()));
+		}
+
+		throw Debugger::DebugMessage("In ContainProcedure(shared_ptr<Object>)\nGot Exception type of variable.");
 	}
 }
 

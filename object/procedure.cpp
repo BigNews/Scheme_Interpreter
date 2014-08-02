@@ -104,7 +104,7 @@ namespace ObjectDef
 		return Parser::Eval(process, current);
 	}*/
 
-	shared_ptr<Object> Procedure::ExtendEnvironment(shared_ptr<Object> x)
+	shared_ptr<Environment> Procedure::ExtendEnvironment(shared_ptr<Object> x)
 	{
 		shared_ptr<Object> nargu = argument;
 		shared_ptr<Object> single;

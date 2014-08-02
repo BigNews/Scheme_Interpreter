@@ -24,3 +24,7 @@ code.scm
 *.log
 *.cache
 *.pdb
+Scmtest2014.zip
+scmtest2014/gen.cpp
+scmtest2014/test.sh
+scmtest2014/test.scm

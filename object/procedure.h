@@ -28,7 +28,7 @@ namespace ObjectDef
 
 		//bool CheckArgument(shared_ptr<Object>);
 		shared_ptr<Object> ApplyProcedure(shared_ptr<Object>);
-		shared_ptr<Object> ExtendEnvironment(shared_ptr<Object>);
+		shared_ptr<Environment> ExtendEnvironment(shared_ptr<Object>);
 
 		shared_ptr<Object> GetProcedureBody();
 

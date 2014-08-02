@@ -98,6 +98,7 @@ namespace Parser
 	//Eval a cond-predicate : 
 	bool _IsCond(shared_ptr<Object>);
 	shared_ptr<Object> CondSequence(shared_ptr<Object>);
+	bool ContainProcedure(shared_ptr<Object> x);
 	//shared_ptr<Object> CondToIf(shared_ptr<Object>);
 	shared_ptr<Object> EvalCond(shared_ptr<Object>, shared_ptr<Environment>);
 	

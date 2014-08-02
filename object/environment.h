@@ -26,6 +26,7 @@ namespace ObjectDef
 		
 		Null SetSymbol(const Symbol&, const shared_ptr<Object>);
 		shared_ptr<Environment> GetFather(){return father;}
+		void EmptyEnv();
 
 	private:
 		

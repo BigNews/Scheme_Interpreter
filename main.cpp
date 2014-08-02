@@ -297,7 +297,7 @@ void LoadFromLibrary()
 
 void Process(char str[])
 {
-	freopen("SchemeInterpreter.log", "w", stdout);
+	//freopen("SchemeInterpreter.log", "w", stdout);
 	std::cout << std::setiosflags(std::ios::showpoint) << std::ios::sync_with_stdio(false);
 	
 	std::cout << "Primitive Initializing..." << std::endl;
@@ -400,6 +400,8 @@ void Process(char str[])
 
 	}
 
+	current -> EmptyEnv();
+
 	std::cout << std::endl;
 	std::cout << "Done!" << std::endl;
 }
@@ -435,7 +437,7 @@ int main(int argc, char * argv[])
 	std::cout << "Program Exit..." << std::endl;
 	
 	#ifdef __DEBUG_MODE_ON_
-	//_CrtDumpMemoryLeaks();
+	_CrtDumpMemoryLeaks();
 	#endif
 
 	return 0;

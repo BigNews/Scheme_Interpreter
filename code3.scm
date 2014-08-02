@@ -210,9 +210,10 @@
                  all-cols))
           (choose-col (+ n 1))))))
   (choose-col 1))
-        
-(display (length (NQU 8))) ;; 92
-(newline)
+ 
+;(display (NQU 8)) 
+(display (length (NQU 3))) ;; 92
+;(newline)
 
 ;;; let-bindings
 (newline)
@@ -223,15 +224,15 @@
                (y (lambda () var1)))
            (y)))  ;; 1
 (newline)
-(display (let* ((var1 2)
-                (y (lambda () var1)))
-           (y)))  ;; 2
-(newline)
+;(display (let* ((var1 2)
+;               (y (lambda () var1)))
+;           (y)))  ;; 2
+;(newline)
 (display (letrec ((var1 2)
                   (y (lambda () var1)))
            (y)))  ;; 2
 (newline)
-(display (let* ((var1 2)
-                (y var1))
-           y))  ;; 2
-(newline)
+;(display (let* ((var1 2)
+;                (y var1))
+;           y))  ;; 2
+;(newline)
