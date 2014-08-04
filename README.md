@@ -5,7 +5,7 @@ Introduction:
 	Scheme解释器（基础版）
 	实现了Scheme的基础功能。
 	
-	栈空间需求大，速度慢（每秒5000条指令）
+	程序特点：栈空间需求大，速度慢（每秒5000条指令）
 
 How to build it?
 
@@ -30,7 +30,7 @@ How to use it?
 	
 Test performance
 	
-	no_side_effect.scm		Accepted! 		19 min 30 s
+	no_side_effect.scm		Accepted! 		19 min 30 s     启用DEBUG_MODE_ON时花费40min。
 		
 	side_effect.scm			Accepted!		< 1 s
 		
