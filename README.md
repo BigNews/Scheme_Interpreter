@@ -1,30 +1,30 @@
-#Scheme_Interpreter <Basic Edition>
+#Scheme Interpreter <Basic Edition>
 
 Introduction:
 
-	Scheme�������������棩
-	ʵ����Scheme�Ļ������ܡ�
+	Scheme解释器（基础版）
+	实现了Scheme的基础功能。
 	
-	ջ�ռ�������ٶ�����ÿ��5000��ָ�
+	栈空间需求大，速度慢（每秒5000条指令）
 
 How to build it?
 
-	����Visual Studio 2010�³ɹ����벢��ͨ�����ԡ�
+	已在Visual Studio 2010下成功编译并且通过测试。
 	
-	���뻷����
-		�뱣֤����128MB�Ķѿռ��ջ�ռ䡣		
-			��Visual Studio�����öѱ����ռ��ջ�����ռ�Ϊ33554432
-			����룺 /HEAP:"33554432" /STACK:"33554432"
-		��VS2010����ʹ��Releaseģʽ����ʹ��������ʽ���룬�뾡���ܵĴ��Ż���
+	编译环境：
+		请保证至少128MB的堆空间和栈空间。		
+			在Visual Studio中设置堆保留空间和栈保留空间为33554432
+			或加入： /HEAP:"33554432" /STACK:"33554432"
+		在VS2010下请使用Release模式，如使用其它方式编译，请尽可能的打开优化。
 
-	�����ڲ�DEBUG���֣�
-		debugger\debugger.h��       ����#define __DEBUG_MODE_ON_  		�����ڴ󲿷ֺ��������ü�顣���ٶȻ������½���
-		parser\parser.cpp			����#define __PARSER_DEBUGGER_		��������Ļ�������������ִ�в��衣������ʹ�õ���cout������ᵼ���ٶ��쳣����
+	代码内部DEBUG部分：
+		debugger\debugger.h：       启用#define __DEBUG_MODE_ON_  		可以在大部分函数中启用检查。但速度会有所下降。
+		parser\parser.cpp			启用#define __PARSER_DEBUGGER_		可以在屏幕上输出解释器的执行步骤。但由于使用的是cout输出，会导致速度异常慢。
 		
 How to use it?
 
-	��ȷ��library.scm��Scheme_Interpreter��ͬһ��Ŀ¼�¡�
-	�ļ�����������SchemeInterpreter.log�ڲ���
+	请确保library.scm与Scheme_Interpreter在同一个目录下。
+	文件的输出存放在SchemeInterpreter.log内部。
 
 	Usage: Scheme_Interpreter <filename>
 	
@@ -38,7 +38,7 @@ Test performance
 	
 Postscript.
 	
-	���������һ�㡣����
+	请对它温柔一点。。。
 		
 	
 	
