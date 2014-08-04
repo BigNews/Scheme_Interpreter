@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="buildin\initialPrimitive.cpp" />
+    <ClCompile Include="buildin\Miscellaneous.cpp" />
+    <ClCompile Include="buildin\NumberOperation.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="object\boolean.cpp" />
+    <ClCompile Include="object\Complex_rational.cpp" />
+    <ClCompile Include="object\complex_real.cpp" />
+    <ClCompile Include="object\environment.cpp" />
+    <ClCompile Include="object\Integer.cpp" />
+    <ClCompile Include="object\list.cpp" />
+    <ClCompile Include="object\null.cpp" />
+    <ClCompile Include="object\object.cpp" />
+    <ClCompile Include="object\pair.cpp" />
+    <ClCompile Include="object\primitive.cpp" />
+    <ClCompile Include="object\procedure.cpp" />
+    <ClCompile Include="object\Rational.cpp" />
+    <ClCompile Include="object\Real.cpp" />
+    <ClCompile Include="object\SchemeChar.cpp" />
+    <ClCompile Include="object\string.cpp" />
+    <ClCompile Include="object\symbol.cpp" />
+    <ClCompile Include="parser\Parser.cpp" />
+    <ClCompile Include="parser\recognizer.cpp" />
+    <ClCompile Include="parser\token.cpp" />
+    <ClCompile Include="standard.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="buildin\initialPrimitive.h" />
+    <ClInclude Include="buildin\Miscellaneous.h" />
+    <ClInclude Include="buildin\NumberOperation.h" />
+    <ClInclude Include="debugger\Debugger.h" />
+    <ClInclude Include="object\boolean.h" />
+    <ClInclude Include="object\Complex_rational.h" />
+    <ClInclude Include="object\complex_real.h" />
+    <ClInclude Include="object\environment.h" />
+    <ClInclude Include="object\Integer.h" />
+    <ClInclude Include="object\list.h" />
+    <ClInclude Include="object\null.h" />
+    <ClInclude Include="object\object.h" />
+    <ClInclude Include="object\objectBuilder.h" />
+    <ClInclude Include="object\pair.h" />
+    <ClInclude Include="object\primitive.h" />
+    <ClInclude Include="object\procedure.h" />
+    <ClInclude Include="object\Rational.h" />
+    <ClInclude Include="object\Real.h" />
+    <ClInclude Include="object\SchemeChar.h" />
+    <ClInclude Include="object\string.h" />
+    <ClInclude Include="object\symbol.h" />
+    <ClInclude Include="object\void.h" />
+    <ClInclude Include="parser\Parser.h" />
+    <ClInclude Include="parser\recognizer.h" />
+    <ClInclude Include="parser\token.h" />
+    <ClInclude Include="standard.h" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{3D4AD0D9-C778-48D5-9927-F4994DE90B86}</ProjectGuid>
+    <RootNamespace>Scheme_Interpreter</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <StackReserveSize>33554432</StackReserveSize>
+      <HeapReserveSize>33554432</HeapReserveSize>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <StackReserveSize>134217728</StackReserveSize>
+      <HeapReserveSize>134217728</HeapReserveSize>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

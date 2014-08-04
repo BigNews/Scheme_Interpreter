@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{2c9a9a71-77df-4e2b-a8b3-36aa2f8ffe7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\buildin">
+      <UniqueIdentifier>{25fa059b-4881-431a-9210-5da5f22bcf78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Object">
+      <UniqueIdentifier>{7c9a7f00-5334-4b9c-b805-05a4c015df00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Object\Number">
+      <UniqueIdentifier>{b70729d7-abbb-46c3-8d46-baf65ac8568d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Object\Miscellaneous">
+      <UniqueIdentifier>{733def4b-3f4e-4930-ab1a-d56016d74b7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Parser">
+      <UniqueIdentifier>{5792e8ba-a499-453a-95fd-3b43b7f2da7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\debug">
+      <UniqueIdentifier>{85044b55-83a0-4a38-a42f-7b4c94d2004f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="buildin\initialPrimitive.cpp">
+      <Filter>源文件\buildin</Filter>
+    </ClCompile>
+    <ClCompile Include="buildin\Miscellaneous.cpp">
+      <Filter>源文件\buildin</Filter>
+    </ClCompile>
+    <ClCompile Include="buildin\NumberOperation.cpp">
+      <Filter>源文件\buildin</Filter>
+    </ClCompile>
+    <ClCompile Include="object\null.cpp">
+      <Filter>源文件\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="object\object.cpp">
+      <Filter>源文件\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="object\Complex_rational.cpp">
+      <Filter>源文件\Object\Number</Filter>
+    </ClCompile>
+    <ClCompile Include="object\complex_real.cpp">
+      <Filter>源文件\Object\Number</Filter>
+    </ClCompile>
+    <ClCompile Include="object\Integer.cpp">
+      <Filter>源文件\Object\Number</Filter>
+    </ClCompile>
+    <ClCompile Include="object\Rational.cpp">
+      <Filter>源文件\Object\Number</Filter>
+    </ClCompile>
+    <ClCompile Include="object\Real.cpp">
+      <Filter>源文件\Object\Number</Filter>
+    </ClCompile>
+    <ClCompile Include="object\boolean.cpp">
+      <Filter>源文件\Object\Miscellaneous</Filter>
+    </ClCompile>
+    <ClCompile Include="object\environment.cpp">
+      <Filter>源文件\Object\Miscellaneous</Filter>
+    </ClCompile>
+    <ClCompile Include="object\list.cpp">
+      <Filter>源文件\Object\Miscellaneous</Filter>
+    </ClCompile>
+    <ClCompile Include="object\pair.cpp">
+      <Filter>源文件\Object\Miscellaneous</Filter>
+    </ClCompile>
+    <ClCompile Include="object\primitive.cpp">
+      <Filter>源文件\Object\Miscellaneous</Filter>
+    </ClCompile>
+    <ClCompile Include="object\procedure.cpp">
+      <Filter>源文件\Object\Miscellaneous</Filter>
+    </ClCompile>
+    <ClCompile Include="object\string.cpp">
+      <Filter>源文件\Object\Miscellaneous</Filter>
+    </ClCompile>
+    <ClCompile Include="object\symbol.cpp">
+      <Filter>源文件\Object\Miscellaneous</Filter>
+    </ClCompile>
+    <ClCompile Include="parser\Parser.cpp">
+      <Filter>源文件\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="parser\recognizer.cpp">
+      <Filter>源文件\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="parser\token.cpp">
+      <Filter>源文件\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="standard.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="object\SchemeChar.cpp">
+      <Filter>源文件\Object\Miscellaneous</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="buildin\initialPrimitive.h">
+      <Filter>源文件\buildin</Filter>
+    </ClInclude>
+    <ClInclude Include="buildin\Miscellaneous.h">
+      <Filter>源文件\buildin</Filter>
+    </ClInclude>
+    <ClInclude Include="buildin\NumberOperation.h">
+      <Filter>源文件\buildin</Filter>
+    </ClInclude>
+    <ClInclude Include="object\null.h">
+      <Filter>源文件\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="object\object.h">
+      <Filter>源文件\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="object\objectBuilder.h">
+      <Filter>源文件\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="object\void.h">
+      <Filter>源文件\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="object\Complex_rational.h">
+      <Filter>源文件\Object\Number</Filter>
+    </ClInclude>
+    <ClInclude Include="object\complex_real.h">
+      <Filter>源文件\Object\Number</Filter>
+    </ClInclude>
+    <ClInclude Include="object\Integer.h">
+      <Filter>源文件\Object\Number</Filter>
+    </ClInclude>
+    <ClInclude Include="object\Rational.h">
+      <Filter>源文件\Object\Number</Filter>
+    </ClInclude>
+    <ClInclude Include="object\Real.h">
+      <Filter>源文件\Object\Number</Filter>
+    </ClInclude>
+    <ClInclude Include="object\boolean.h">
+      <Filter>源文件\Object\Miscellaneous</Filter>
+    </ClInclude>
+    <ClInclude Include="object\environment.h">
+      <Filter>源文件\Object\Miscellaneous</Filter>
+    </ClInclude>
+    <ClInclude Include="object\list.h">
+      <Filter>源文件\Object\Miscellaneous</Filter>
+    </ClInclude>
+    <ClInclude Include="object\pair.h">
+      <Filter>源文件\Object\Miscellaneous</Filter>
+    </ClInclude>
+    <ClInclude Include="object\primitive.h">
+      <Filter>源文件\Object\Miscellaneous</Filter>
+    </ClInclude>
+    <ClInclude Include="object\procedure.h">
+      <Filter>源文件\Object\Miscellaneous</Filter>
+    </ClInclude>
+    <ClInclude Include="object\string.h">
+      <Filter>源文件\Object\Miscellaneous</Filter>
+    </ClInclude>
+    <ClInclude Include="object\symbol.h">
+      <Filter>源文件\Object\Miscellaneous</Filter>
+    </ClInclude>
+    <ClInclude Include="parser\Parser.h">
+      <Filter>源文件\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="parser\recognizer.h">
+      <Filter>源文件\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="parser\token.h">
+      <Filter>源文件\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="debugger\Debugger.h">
+      <Filter>源文件\debug</Filter>
+    </ClInclude>
+    <ClInclude Include="standard.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="object\SchemeChar.h">
+      <Filter>源文件\Object\Miscellaneous</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

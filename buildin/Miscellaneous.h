@@ -9,6 +9,7 @@
 #include "../object/null.h"
 #include "../object/string.h"
 #include "../object/symbol.h"
+#include "../object/SchemeChar.h"
 
 #ifndef _BUILDIN_MISCELLANEOUS_H_
 #define _BUILDIN_MISCELLANEOUS_H_

@@ -1,0 +1,10 @@
+*~
+*.exe
+*.o
+gen
+*.in
+*.out
+*.log
+*.bak
+*.ans
+random_test*

@@ -101,6 +101,12 @@ namespace buildin
 			return true;
 		}
 
+		if (x -> getType() == CHAR)
+		{
+			_DisplayChar(x);
+			return true;
+		}
+
 		//std::cout << "|" << x -> getType() << "|";
 
 		return false;

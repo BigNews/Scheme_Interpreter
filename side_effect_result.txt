@@ -1,0 +1,39 @@
+Test with side effect
+
+set!
+1
+doremi
+Hello, world!
+
+lexical scope and let-bindings
+correct
+correct
+correct
+correct
+
+swap f and g
+fg
+gf
+
+lists with side effect
+(Romeo and Juliet is not written by William Shakespeare)
+That's wrong!! I'll correct the mistake.
+(Romeo and Juliet is  written by William Shakespeare)
+It's correct now. But remove the unused empty string would look better.
+(Romeo and Juliet is written by William Shakespeare)
+Perfect!
+
+closure with side effect
+((Bernadette Wolowitz . Melissa Rauch) (Penny . Kaley Cuoco) (Amy Fowler . Mayim Bialik) (Howard Wolowitz . Simon Helberg) (Raj Koothrappali . Kunal Nayyar) (Leonard Hofstadter . Johnny Calecki) (Sheldon Cooper . Jim Parsons) (Chandler Bing . Matthew Perry) (Joey Tribbiani . Matt Leblanc) (Phoebe Buffay . Lisa Kudrow) (Rachael Green . Jennifer Aniston) (Monica Geller . Courteney Cox) (Ross Geller . David Schwimmer))
+Johnny Calecki
+Kaley Cuoco
+David Schwimmer
+Jennifer Aniston
+Melissa Rauch
+null
+null
+null
+Kudrow
+Cuoco
+Cox
+()

@@ -1250,10 +1250,33 @@ namespace Parser
 	{
 		if (str.length() < 2) return false;
 		if (str[0] != '"' && str[str.length() - 1] != '"') return false;
+
+		int i;
+		while (i < str.length())
+		{
+			if (str[i] == '\\')
+			{
+				++i;
+				
+				if (i == str.length()) return false;
+			}
+			++i;
+		}
+
 		return true;
 	}
 
 	using ObjectDef::String;
+
+	char CharTransformation(char ch)
+	{
+		if (ch == 'n') return '\n';
+		if (ch == 't') return '\t';
+		if (ch == '\'') return '\'';
+		if (ch == '\\') return '\\';
+		if (ch == '\"') return '"';
+		return ch;
+	}
 
 	shared_ptr<Object> TokenToString(string& str)
 	{
@@ -1262,7 +1285,31 @@ namespace Parser
 		if (str[0] != '"' && str[str.length() - 1] != '"') throw Debugger::DebugMessage("In TokenToString,\nx is not a string\n");
 		#endif
 
-		return shared_ptr<String>(new String(str.substr(1, str.length() - 2)));
+		string exv;
+
+		char ch;
+
+		int i = 1;
+		while (i < str.length() - 1)
+		{
+			if (str[i] == '\\')
+			{
+				++i;
+				
+				#ifdef __DEBUG_MODE_ON_
+				if (i == str.length() - 1) throw Debugger::DebugMessage("In TokenToString,\nOut Of length.\n");
+				#endif
+				exv += CharTransformation(str[i]);
+				++i;
+			}
+			else
+			{
+				exv += str[i];
+				++i;
+			}
+		}
+
+		return shared_ptr<String>(new String(exv));
 	}
 
 	bool TokenIsSymbol(string &str)
@@ -1303,6 +1350,43 @@ namespace Parser
 
 		if (str == "#t" || str == "#true") return shared_ptr<Boolean>(new Boolean(true));
 		return shared_ptr<Boolean>(new Boolean(false));
+	}
+
+	bool TokenIsChar(string str)
+	{
+		if (str.length() != 3)
+		{
+			if (str == "#\space") return true;
+			if (str == "#\newline") return true;
+
+			return false;
+		}
+		else
+		{
+			if (str[0] != '#') return false;
+			if (str[1] != '\\') return false;
+
+			return true;
+		}
+	}
+
+	shared_ptr<Char> TokenToChar(string str)
+	{
+		#ifdef __DEBUG_MODE_ON_
+		if (!TokenIsChar(str)) throw Debugger::DebugMessage("In TokenToChar(string&),\ntoken is not a string\n");
+		#endif
+
+		if (str.length() != 3)
+		{
+			if (str == "#\space") return shared_ptr<Char>(new Char(' '));
+			if (str == "#\newline") return shared_ptr<Char>(new Char('\n'));
+
+			throw Debugger::DebugMessage("In TokenToChar,\nGot unexpected value 1.\n");
+		}
+		else
+		{
+			return (shared_ptr<Char>(new Char(str[2])));
+		}
 	}
 }
 

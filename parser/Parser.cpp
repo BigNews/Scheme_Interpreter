@@ -52,6 +52,14 @@ namespace Parser
 				     shared_ptr<Null>(new Null())));
 		}
 		else
+		if (TokenIsChar(token.element[index]))
+		{
+			//shared_ptr<Object> exv;
+			//exv = TokenToChar(token.element[index++]);
+			return TokenToChar(token.element[index++]);
+			//return exv;
+		}
+		else
 		if (TokenIsNumber(token.element[index]))
 		{
 			return TokenToNumber(token.element[index++]);
@@ -66,6 +74,7 @@ namespace Parser
 		{
 			return TokenToBoolean(token.element[index++]);
 		}
+		else
 		if (TokenIsSymbol(token.element[index]))
 		{
 			return TokenToSymbol(token.element[index++]);
@@ -116,6 +125,8 @@ namespace Parser
 	{
 		if (x -> getType() == SYMBOL) return false;
 		if (x -> getType() == PAIR) return false;
+		//if (x -> getType() == STRING) return false;
+		//if (x -> getType() == CHAR) return false;
 		return true;
 	}
 
@@ -415,7 +426,7 @@ namespace Parser
 	//Eval a let-binding.
 	bool _IsLet(shared_ptr<Object> x)
 	{
-		return (TaggedList(x, "let") || TaggedList(x, "letrec"));
+		return (TaggedList(x, "let"));
 	}
 
 	shared_ptr<Object> LetParameters(shared_ptr<Object> x)
@@ -468,6 +479,84 @@ namespace Parser
 			expr = static_pointer_cast<Pair>(expr) -> car();
 
 			env -> DefineSymbol(static_pointer_cast<Symbol>(symb) -> value, Eval(expr, envi));
+
+			para = static_pointer_cast<Pair>(para) -> cdr();
+		}
+
+		return EvalSequence(body, env);
+	}
+
+	//Eval a let*-binding
+	bool _IsLetStar(shared_ptr<Object> x)
+	{
+		return (TaggedList(x, "let*"));
+	}
+
+	shared_ptr<Object> EvalLetStar(shared_ptr<Object> para, shared_ptr<Object> body, shared_ptr<Environment> envi)
+	{
+		shared_ptr<Environment> env(new Environment(envi));
+
+		shared_ptr<Object> x;
+		shared_ptr<Object> symb;
+		shared_ptr<Object> expr;
+
+		while (para -> getType() != NIL)
+		{
+			#ifdef __DEBUG_MODE_ON_
+			if (para -> getType() != PAIR) throw Debugger::DebugMessage("In EvalLetStar(shared_ptr<Object>, shared_ptr<Object>, shared_ptr<Environment>),\npara is not a pair.");
+			#endif
+			x = static_pointer_cast<Pair>(para) -> car();
+
+			if (x -> getType() != PAIR) throw Debugger::DebugMessage("let*: bad syntax (not an identifier and expression for a binding)\n");
+			symb = static_pointer_cast<Pair>(x) -> car();
+			if (symb -> getType() != SYMBOL) throw Debugger::DebugMessage("let*: bad syntax (not an identifier and expression for a binding)\n");
+
+			expr = static_pointer_cast<Pair>(x) -> cdr();
+			if (expr -> getType() != PAIR) throw Debugger::DebugMessage("let*: bad syntax (not an identifier and expression for a binding)\n");
+			expr = static_pointer_cast<Pair>(expr) -> car();
+
+			env -> DefineSymbol(static_pointer_cast<Symbol>(symb) -> value, Eval(expr, env));
+
+			para = static_pointer_cast<Pair>(para) -> cdr();
+		}
+
+		return EvalSequence(body, env);
+	}
+
+	//Eval a letrec-binding
+	bool _IsLetRec(shared_ptr<Object> x)
+	{
+		return (TaggedList(x, "letrec"));
+	}
+
+	shared_ptr<Object> EvalLetRec(shared_ptr<Object> para, shared_ptr<Object> body, shared_ptr<Environment> envi)
+	{
+		shared_ptr<Environment> env(new Environment(envi));
+
+		shared_ptr<Object> x;
+		shared_ptr<Object> symb;
+		shared_ptr<Object> expr;
+
+		while (para -> getType() != NIL)
+		{
+			#ifdef __DEBUG_MODE_ON_
+			if (para -> getType() != PAIR) throw Debugger::DebugMessage("In EvalLetStar(shared_ptr<Object>, shared_ptr<Object>, shared_ptr<Environment>),\npara is not a pair.");
+			#endif
+			x = static_pointer_cast<Pair>(para) -> car();
+
+			if (x -> getType() != PAIR) throw Debugger::DebugMessage("let*: bad syntax (not an identifier and expression for a binding)\n");
+			symb = static_pointer_cast<Pair>(x) -> car();
+			if (symb -> getType() != SYMBOL) throw Debugger::DebugMessage("let*: bad syntax (not an identifier and expression for a binding)\n");
+
+			expr = static_pointer_cast<Pair>(x) -> cdr();
+			if (expr -> getType() != PAIR) throw Debugger::DebugMessage("let*: bad syntax (not an identifier and expression for a binding)\n");
+			expr = static_pointer_cast<Pair>(expr) -> car();
+
+			shared_ptr<Object> bindingObject = Eval(expr, envi);
+			if (bindingObject -> getType() == COMPOUND_PROCEDURE)
+				static_pointer_cast<Procedure>(bindingObject) -> SetFather(env);
+
+			env -> DefineSymbol(static_pointer_cast<Symbol>(symb) -> value, bindingObject);
 
 			para = static_pointer_cast<Pair>(para) -> cdr();
 		}
@@ -566,6 +655,8 @@ namespace Parser
 		if (_IsLambda(expr)) return MakeProcedure(LambdaParameters(expr), LambdaBody(expr), envi);
 		if (_IsBegin(expr)) return EvalSequence(BeginActions(expr), envi);
 		if (_IsLet(expr)) return EvalLet(LetParameters(expr), LetBody(expr), envi);
+		if (_IsLetStar(expr)) return EvalLetStar(LetParameters(expr), LetBody(expr), envi);
+		if (_IsLetRec(expr)) return EvalLetRec(LetParameters(expr), LetBody(expr), envi);
 		if (_IsCondition(expr)) return EvalCond(CondSequence(expr), envi);
 		if (_IsApplication(expr)) 
 		{

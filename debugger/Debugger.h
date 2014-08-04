@@ -22,7 +22,7 @@
 #include <iostream>
 
 #ifndef __DEBUG_MODE_ON_
-#define __DEBUG_MODE_ON_
+//#define __DEBUG_MODE_ON_
 #endif
 
 #ifndef _DEBUGGER_H_

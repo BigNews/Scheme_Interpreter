@@ -32,6 +32,8 @@ namespace ObjectDef
 
 		shared_ptr<Object> GetProcedureBody();
 
+		void SetFather(shared_ptr<Environment>);
+
 	private:
 
 		shared_ptr<Object> argument;

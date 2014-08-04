@@ -1,5 +1,7 @@
 #include <iomanip>
 #include "Real.h"
+#include <float.h>
+#include <cmath>
 
 namespace ObjectDef
 {
@@ -12,6 +14,7 @@ namespace ObjectDef
 
 	Real::Real(const char* str)
 	{
+
 		num = 0.0f;
 		objType = REAL;
 
@@ -124,12 +127,22 @@ namespace ObjectDef
 
 	Real RealPlus(const Real &x, const Real &y)
 	{
-		return Real(x.num + y.num);
+		double t1, t2;
+		
+		if (_isnan(x.num)) t1 = 0.0; else t1 = x.num;
+		if (_isnan(y.num)) t2 = 0.0; else t2 = y.num;
+
+		return Real(t1 + t2);
 	}
 
 	Real RealMinus(const Real &x, const Real &y)
 	{
-		return Real(x.num - y.num);
+		double t1, t2;
+
+		if (_isnan(x.num)) t1 = 0.0; else t1 = x.num;
+		if (_isnan(y.num)) t2 = 0.0; else t2 = y.num;
+
+		return Real(t1 - t2);
 	}
 
 	Real RealMult(const Real &x, const Real &y)

@@ -297,17 +297,19 @@ void LoadFromLibrary()
 
 void Process(char str[])
 {
-	//freopen("SchemeInterpreter.log", "w", stdout);
-	std::cout << std::setiosflags(std::ios::showpoint) << std::ios::sync_with_stdio(false);
+	freopen("SchemeInterpreter.log", "w", stdout);
+
+	std::cout << std::setiosflags(std::ios::showpoint);
+	std::ios::sync_with_stdio(false);
 	
-	std::cout << "Primitive Initializing..." << std::endl;
+	std::cerr << "Primitive Initializing..." << std::endl;
 	std::shared_ptr<ObjectDef::Environment> current(new ObjectDef::Environment());
 	InitialPrimitive::InitAll(current);
-	std::cout << "Done!" << std::endl;
+	std::cerr << "Done!" << std::endl;
 
-	std::cout << std::endl;
+	std::cerr << std::endl;
 
-	std::cout << "Import Library..." << std::endl;
+	std::cerr << "Import Library..." << std::endl;
 	Parser::Tokens tttt("library.scm");
 	if (tttt.LoadAndTokenize() == Parser::TOKENS_UNEXPECTED_EOF)
 	{
@@ -342,12 +344,12 @@ void Process(char str[])
 		tttt.pos = tindex;
 
 	}
-	std::cout << "Done!" << std::endl;
+	std::cerr << "Done!" << std::endl;
 	
-	std::cout << std::endl;
+	std::cerr << std::endl;
 
 
-	std::cout << "Load program and interpreting..." << std::endl;
+	std::cerr << "Load program and interpreting..." << std::endl;
 	Parser::Tokens ttt(str);
 	if (ttt.LoadAndTokenize() == Parser::TOKENS_UNEXPECTED_EOF)
 	{
@@ -360,7 +362,7 @@ void Process(char str[])
 	//std::shared_ptr<ObjectDef::Pair> t2(buildin::cons(t1, t1));
 	//buildin::_Display(t2);
 
-	std::cout << std::endl;
+	std::cerr << std::endl;
 
 	#define RELEASE_MODE_ON
 
@@ -399,11 +401,12 @@ void Process(char str[])
 		ttt.pos = tindex;
 
 	}
+	buildin::_Display(tmp);
 
 	current -> EmptyEnv();
 
-	std::cout << std::endl;
-	std::cout << "Done!" << std::endl;
+	std::cerr << std::endl;
+	std::cerr << "Done!" << std::endl;
 }
 
 int main(int argc, char * argv[])
@@ -422,8 +425,8 @@ int main(int argc, char * argv[])
 		//temp4();
 		//temp5();
 		Process(argv[1]);
-		std::cout << std::endl;
-		std::cout << "Accepted! Press any key to exit the program." << std::endl;
+		std::cerr << std::endl;
+		std::cerr << "Accepted! Press any key to exit the program." << std::endl;
 		//system("pause");
 	}
 	catch (Debugger::DebugMessage a)
@@ -434,7 +437,7 @@ int main(int argc, char * argv[])
 		//system("pause");
 	}
 
-	std::cout << "Program Exit..." << std::endl;
+	std::cerr << "Program Exit..." << std::endl;
 	
 	#ifdef __DEBUG_MODE_ON_
 	_CrtDumpMemoryLeaks();

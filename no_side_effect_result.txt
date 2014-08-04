@@ -1,0 +1,82 @@
+Test without side effect
+
+basic operations
+6
+-1
+6
+2/3
+0
+2
+3
+
+big numbers
+-9602194792318244175459533629632373116000
+
+fast-exp
+1
+32
+1267650600228229401496703205376
+
+fibonacci sequence
+5
+6765
+2178309
+
+compute e
+2.7182818284590455
+
+predicate eqv?
+#t
+
+predicate eq?
+#t
+
+predicate equal?
+#t
+
+pairs and lists
+#t
+#t
+#t
+(2 c)
+#f
+(banana 1)
+#f
+((a b) (a c) (b c) (a b) (c a) (c b) (a b))
+
+infinite stream
+0
+4
+100
+20
+9900
+
+N-queens
+1
+
+let-bindins
+1
+2
+2
+2
+
+closure
+Balance = 100
+Transaction log: ()
+Balance = 200
+Transaction log: ((add 100))
+Balance = 185
+Transaction log: ((add 100) (add -20) (add 5))
+Balance = 0
+Transaction log: ((add 100) (add -20) (add 5) (clear 185))
+unknown action (miaow~~~~ 555 555 -_-||)
+Balance = 0
+Transaction log: ((add 100) (add -20) (add 5) (clear 185))
+Balance = 185
+Transaction log: ((add 100) (add -20) (add 5) (clear 185) (revert 1))
+Balance = 0
+Transaction log: ((add 100) (add -20) (add 5) (clear 185) (revert 1) (revert 1))
+Balance = 0
+Transaction log: ((add 100) (add -20) (add 5) (clear 185) (revert 1) (revert 1) (revert 2))
+Balance = 180
+Transaction log: ((add 100) (add -20))

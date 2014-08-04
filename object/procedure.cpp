@@ -104,6 +104,11 @@ namespace ObjectDef
 		return Parser::Eval(process, current);
 	}*/
 
+	void Procedure::SetFather(shared_ptr<Environment> fa)
+	{
+		father = fa;
+	}
+
 	shared_ptr<Environment> Procedure::ExtendEnvironment(shared_ptr<Object> x)
 	{
 		shared_ptr<Object> nargu = argument;

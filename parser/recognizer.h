@@ -8,6 +8,7 @@
 #include "../object/list.h"
 #include "../object/string.h"
 #include "../object/symbol.h"
+#include "../object/SchemeChar.h"
 #include <string>
 #include <memory>
 
@@ -24,6 +25,7 @@ namespace Parser
 	using ObjectDef::ComplexRational;
 	using ObjectDef::ComplexReal;
 	using ObjectDef::Real;
+	using ObjectDef::Char;
 
 	using std::string;
 
@@ -75,6 +77,8 @@ namespace Parser
 
 	bool TokenIsBoolean(string&);
 
+	bool TokenIsChar(string);
+
 	//bool TokenIsDelimiter(string&);
 
 	bool TokenIsSymbol(string&);
@@ -114,6 +118,8 @@ namespace Parser
 	Real TokenToReal(string, Exactness OuterE = DEFAULT_EXACTNESS, NumberRadix OuterR = DEFAULT_RADIX);
 	ComplexRational TokenToComplexRational(string);
 	ComplexReal TokenToComplexReal(string);
+
+	shared_ptr<Char> TokenToChar(string);
 
 	shared_ptr<Boolean> TokenToBoolean(string&);
 

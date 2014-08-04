@@ -78,18 +78,18 @@
 ;;; fibonacci
 (newline)
 (display "fibonacci sequence\n")
-(define fib
-  (lambda (n)
-    (letrec ((calc-fib (lambda (prev now n)
-                         (if (= n 0)
-                             prev
-                             (calc-fib now (+ prev now) (- n 1))))))
-      (calc-fib 0 1 n))))
+;(define fib
+;  (lambda (n)
+;    (letrec ((calc-fib (lambda (prev now n)
+;                         (if (= n 0)
+;                             prev
+;                             (calc-fib now (+ prev now) (- n 1))))))
+;      (calc-fib 0 1 n))))
 
-(display (fib 5))  ;; 5
-(newline)
-(display (fib 20)) ;; 6765
-(newline)
+;(display (fib 5))  ;; 5
+;(newline)
+;(display (fib 20)) ;; 6765
+;(newline)
 ;;(fib 32)  ;;2178309
 ;;(fib 10000)
 
@@ -101,7 +101,7 @@
       e
       (computeE (+ e (/ 1.0 f)) (+ k 1) (* f k) m)))
 
-(display (computeE 0 1 1 10000))  ;; 2.7182818##
+(display (computeE 0 1 1 100))  ;; 2.7182818##
 (newline)
 
 ;;; pairs and lists
@@ -128,8 +128,8 @@
 (define lst '(1.1 1 2 #\c))
 (display (eqv? (cadr lst) 1))  ;; #t
 (newline)
-(display (eqv? (list-ref lst (- (length lst) 1)) #\c))  ;; #t
-(newline)
+;(display (eqv? (list-ref lst (- (length lst) 1)) #\c))  ;; #t
+;(newline)
 (display (memq 2 lst))  ;; (2 #\c)
 (newline)
 (display (memq 100 lst)) ;; #f
@@ -210,28 +210,29 @@
                  all-cols))
           (choose-col (+ n 1))))))
   (choose-col 1))
-        
-(display (length (NQU 1))) ;; 92
-(newline)
+ 
+(display (NQU 1)) 
+;(display (length (NQU 2))) ;; 92
+;(newline)
 
 ;;; let-bindings
-(newline)
-(display "let-bindins")
-(newline)
-(define var1 1)
-(display (let ((var1 2)
-               (y (lambda () var1)))
-           (y)))  ;; 1
-(newline)
-(display (let* ((var1 2)
-                (y (lambda () var1)))
-           (y)))  ;; 2
-(newline)
-(display (letrec ((var1 2)
-                  (y (lambda () var1)))
-           (y)))  ;; 2
-(newline)
-(display (let* ((var1 2)
-                (y var1))
-           y))  ;; 2
-(newline)
+;(newline)
+;(display "let-bindins")
+;(newline)
+;(define var1 1)
+;(display (let ((var1 2)
+;               (y (lambda () var1)))
+;           (y)))  ;; 1
+;(newline)
+;(display (let* ((var1 2)
+;                (y (lambda () var1)))
+;           (y)))  ;; 2
+;(newline)
+;(display (letrec ((var1 2)
+;                  (y (lambda () var1)))
+;           (y)))  ;; 2
+;(newline)
+;(display (let* ((var1 2)
+;                (y var1))
+;           y))  ;; 2
+;(newline)
