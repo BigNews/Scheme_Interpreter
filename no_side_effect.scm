@@ -243,7 +243,7 @@
           (choose-col (+ n 1))))))
   (choose-col 1))
         
-(show (length (NQU 1))) ;; 92
+(show (length (NQU 8))) ;; 92
 
 ;;; let-bindings
 (title "let-bindins")
