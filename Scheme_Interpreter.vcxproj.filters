@@ -181,4 +181,7 @@
       <Filter>源文件\Object\Miscellaneous</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="code3.scm" />
+  </ItemGroup>
 </Project>

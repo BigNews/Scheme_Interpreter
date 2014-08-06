@@ -211,7 +211,7 @@
           (choose-col (+ n 1))))))
   (choose-col 1))
         
-(display (length (NQU 1))) ;; 92
+(display (length (NQU 6))) ;; 92
 (newline)
 
 ;;; let-bindings

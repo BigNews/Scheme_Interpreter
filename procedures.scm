@@ -59,7 +59,7 @@
                                                            (hanoi helper dest source (- disks 1)))
     '()))
 
-;(hanoi 'a 'b 'c 3');should return ((a b) (a c) (b c) (a b) (c a) (c b) (a b))
+(hanoi 'a 'b 'c 3');should return ((a b) (a c) (b c) (a b) (c a) (c b) (a b))
 
 
 ;-------------- math related stuff

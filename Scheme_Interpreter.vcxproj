@@ -64,6 +64,9 @@
     <ClInclude Include="parser\token.h" />
     <ClInclude Include="standard.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="code3.scm" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{3D4AD0D9-C778-48D5-9927-F4994DE90B86}</ProjectGuid>
     <RootNamespace>Scheme_Interpreter</RootNamespace>

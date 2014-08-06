@@ -49,7 +49,7 @@
 (define (cddddr x) (cdr (cdr (cdr (cdr x)))))
 
 (define (even? x) (if (= (remainder x 2) 0) #t #f))
-(define (odd? x) (if (= (remainder x 2) 0) #t #f))
+(define (odd? x) (if (= (remainder x 2) 1) #t #f))
 
 (define (equal? x y)
   (if (pair? x)
