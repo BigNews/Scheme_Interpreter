@@ -38,7 +38,7 @@ Test performance
 	
 Postscript.
 	
-	请对它温柔一点。。。
+	<Invisible>
 		
 	
 	
